@@ -4,29 +4,29 @@
 
 {% block style %}
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f4f7f6;
-        color: #333;
-    }
-
     h1 {
         text-align: center;
         color: #2c3e50;
         margin-top: 20px;
+        font-size: 2em;
     }
 
     .form-container {
         background-color: #fff;
-        margin: 50px auto;
         padding: 30px 40px;
         border-radius: 10px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        max-width: 800px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        height: 100%;
+        box-sizing: border-box;
     }
 
     .form-group {
         margin-bottom: 20px;
+        margin: 10px;
+
     }
 
     .form-group label {
@@ -53,8 +53,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
-        margin: 20px auto;
-        padding: 20px;
+        padding-top: 20px;
         max-width: 1200px;
     }
 
@@ -77,6 +76,16 @@
     .symptom-list {
         list-style-type: none;
         padding: 0;
+    }
+
+    .form-group select,
+    .form-group input {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
     }
 
     .symptom-list li {
@@ -107,6 +116,13 @@
     .submit-btn:hover {
         background-color: #2ecc71;
     }
+
+    /* New section for form field columns */
+    .form-field-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
 </style>
 {% endblock %}
 
@@ -114,41 +130,21 @@
 <h1>Medical Diagnosis Form</h1>
 <div class="form-container">
     <form method="POST" action="{{ url_for('form_page') }}">
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-        </div>
 
         <div class="form-group">
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" placeholder="Enter your age" required>
-        </div>
-
-        <div class="form-group">
-            <label for="symptoms">Describe Your Symptoms:</label>
-            <textarea id="symptoms" name="symptoms" placeholder="Describe your symptoms" required></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="history">Medical History:</label>
-            <textarea id="history" name="history" placeholder="Mention any relevant medical history"
-                required></textarea>
-        </div>
-
-        <div class="form-group">
-            <label>Select Your Symptoms:</label>
+            <label>Select Your Symptoms</label>
             <div class="grid-container">
                 <!-- General Symptoms -->
                 <div class="grid-item">
                     <h3>General Symptoms</h3>
                     <ul class="symptom-list">
-                        <li><input type="checkbox"> Fever</li>
-                        <li><input type="checkbox"> Fatigue / Tiredness</li>
-                        <li><input type="checkbox"> Chills or Shivering</li>
-                        <li><input type="checkbox"> Sweating (Night Sweats)</li>
-                        <li><input type="checkbox"> Weight Loss (Unexplained)</li>
-                        <li><input type="checkbox"> Weight Gain</li>
-                        <li><input type="checkbox"> Loss of Appetite</li>
+                        <li><input type="checkbox" name="fever"> Fever</li>
+                        <li><input type="checkbox" name="fatigue_tiredness"> Fatigue / Tiredness</li>
+                        <li><input type="checkbox" name="chills_or_shivering"> Chills or Shivering</li>
+                        <li><input type="checkbox" name="sweating_night_sweats"> Sweating (Night Sweats)</li>
+                        <li><input type="checkbox" name="weight_loss_unexplained"> Weight Loss (Unexplained)</li>
+                        <li><input type="checkbox" name="weight_gain"> Weight Gain</li>
+                        <li><input type="checkbox" name="loss_of_appetite"> Loss of Appetite</li>
                     </ul>
                 </div>
 
@@ -156,13 +152,13 @@
                 <div class="grid-item">
                     <h3>Respiratory Symptoms</h3>
                     <ul class="symptom-list">
-                        <li><input type="checkbox"> Cough (Dry or Productive)</li>
-                        <li><input type="checkbox"> Shortness of Breath</li>
-                        <li><input type="checkbox"> Chest Pain</li>
-                        <li><input type="checkbox"> Wheezing</li>
-                        <li><input type="checkbox"> Nasal Congestion</li>
-                        <li><input type="checkbox"> Sore Throat</li>
-                        <li><input type="checkbox"> Sneezing</li>
+                        <li><input type="checkbox" name="cough_dry_or_productive"> Cough (Dry or Productive)</li>
+                        <li><input type="checkbox" name="shortness_of_breath"> Shortness of Breath</li>
+                        <li><input type="checkbox" name="chest_pain"> Chest Pain</li>
+                        <li><input type="checkbox" name="wheezing"> Wheezing</li>
+                        <li><input type="checkbox" name="nasal_congestion"> Nasal Congestion</li>
+                        <li><input type="checkbox" name="sore_throat"> Sore Throat</li>
+                        <li><input type="checkbox" name="sneezing"> Sneezing</li>
                     </ul>
                 </div>
 
@@ -170,11 +166,11 @@
                 <div class="grid-item">
                     <h3>Cardiovascular Symptoms</h3>
                     <ul class="symptom-list">
-                        <li><input type="checkbox"> Palpitations</li>
-                        <li><input type="checkbox"> Chest Tightness</li>
-                        <li><input type="checkbox"> Dizziness</li>
-                        <li><input type="checkbox"> Swelling in Legs</li>
-                        <li><input type="checkbox"> Fainting</li>
+                        <li><input type="checkbox" name="palpitations"> Palpitations</li>
+                        <li><input type="checkbox" name="chest_tightness"> Chest Tightness</li>
+                        <li><input type="checkbox" name="dizziness"> Dizziness</li>
+                        <li><input type="checkbox" name="swelling_in_legs"> Swelling in Legs</li>
+                        <li><input type="checkbox" name="fainting"> Fainting</li>
                     </ul>
                 </div>
 
@@ -182,13 +178,13 @@
                 <div class="grid-item">
                     <h3>Gastrointestinal Symptoms</h3>
                     <ul class="symptom-list">
-                        <li><input type="checkbox"> Abdominal Pain</li>
-                        <li><input type="checkbox"> Nausea</li>
-                        <li><input type="checkbox"> Vomiting</li>
-                        <li><input type="checkbox"> Diarrhea</li>
-                        <li><input type="checkbox"> Constipation</li>
-                        <li><input type="checkbox"> Bloating</li>
-                        <li><input type="checkbox"> Heartburn</li>
+                        <li><input type="checkbox" name="abdominal_pain"> Abdominal Pain</li>
+                        <li><input type="checkbox" name="nausea"> Nausea</li>
+                        <li><input type="checkbox" name="vomiting"> Vomiting</li>
+                        <li><input type="checkbox" name="diarrhea"> Diarrhea</li>
+                        <li><input type="checkbox" name="constipation"> Constipation</li>
+                        <li><input type="checkbox" name="bloating"> Bloating</li>
+                        <li><input type="checkbox" name="heartburn"> Heartburn</li>
                     </ul>
                 </div>
 
@@ -196,13 +192,13 @@
                 <div class="grid-item">
                     <h3>Neurological Symptoms</h3>
                     <ul class="symptom-list">
-                        <li><input type="checkbox"> Headache</li>
-                        <li><input type="checkbox"> Dizziness</li>
-                        <li><input type="checkbox"> Weakness in Limbs</li>
-                        <li><input type="checkbox"> Numbness / Tingling</li>
-                        <li><input type="checkbox"> Seizures</li>
-                        <li><input type="checkbox"> Confusion</li>
-                        <li><input type="checkbox"> Blurred Vision</li>
+                        <li><input type="checkbox" name="headache"> Headache</li>
+                        <li><input type="checkbox" name="dizziness"> Dizziness</li>
+                        <li><input type="checkbox" name="weakness_in_limbs"> Weakness in Limbs</li>
+                        <li><input type="checkbox" name="numbness_tingling"> Numbness / Tingling</li>
+                        <li><input type="checkbox" name="seizures"> Seizures</li>
+                        <li><input type="checkbox" name="confusion"> Confusion</li>
+                        <li><input type="checkbox" name="blurred_vision"> Blurred Vision</li>
                     </ul>
                 </div>
 
@@ -210,12 +206,12 @@
                 <div class="grid-item">
                     <h3>Skin Symptoms</h3>
                     <ul class="symptom-list">
-                        <li><input type="checkbox"> Rash</li>
-                        <li><input type="checkbox"> Itching</li>
-                        <li><input type="checkbox"> Redness</li>
-                        <li><input type="checkbox"> Bruising</li>
-                        <li><input type="checkbox"> Dry / Flaky Skin</li>
-                        <li><input type="checkbox"> Yellowing of Skin</li>
+                        <li><input type="checkbox" name="rash"> Rash</li>
+                        <li><input type="checkbox" name="itching"> Itching</li>
+                        <li><input type="checkbox" name="redness"> Redness</li>
+                        <li><input type="checkbox" name="bruising"> Bruising</li>
+                        <li><input type="checkbox" name="dry_flaky_skin"> Dry / Flaky Skin</li>
+                        <li><input type="checkbox" name="yellowing_of_skin"> Yellowing of Skin</li>
                     </ul>
                 </div>
 
@@ -223,22 +219,89 @@
                 <div class="grid-item">
                     <h3>Psychological Symptoms</h3>
                     <ul class="symptom-list">
-                        <li><input type="checkbox"> Anxiety</li>
-                        <li><input type="checkbox"> Depression</li>
-                        <li><input type="checkbox"> Mood Swings</li>
-                        <li><input type="checkbox"> Insomnia</li>
-                        <li><input type="checkbox"> Poor Concentration</li>
-                        <li><input type="checkbox"> Irritability</li>
+                        <li><input type="checkbox" name="anxiety"> Anxiety</li>
+                        <li><input type="checkbox" name="depression"> Depression</li>
+                        <li><input type="checkbox" name="mood_swings"> Mood Swings</li>
+                        <li><input type="checkbox" name="insomnia"> Insomnia</li>
+                        <li><input type="checkbox" name="poor_concentration"> Poor Concentration</li>
+                        <li><input type="checkbox" name="irritability"> Irritability</li>
                     </ul>
                 </div>
             </div>
+        </div>
+
+
+        <div class="form-field-container">
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
 
             <div class="form-group">
-                <label for="other_symptoms">Other Symptoms (if any):</label>
-                <input type="text" id="other_symptoms" name="other_symptoms" placeholder="Enter other symptoms here">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age" required>
             </div>
-            <button type="submit" class="submit-btn">Submit Diagnosis</button>
+
+            <div class="form-group">
+                <label for="onset">When did these symptoms begin?</label>
+                <input type="text" id="onset" name="onset" placeholder="When did these symptoms begin?" required>
+            </div>
         </div>
+
+        <div class="form-field-container">
+            <div class="form-group">
+                <label for="severity">On a scale of 1-10, how severe are these symptoms?</label>
+                <input type="number" id="severity" name="severity" min="1" max="10" placeholder="Severity (1-10)"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="aggravating_factors">Does anything make your symptoms worse?</label>
+                <input type="text" id="aggravating_factors" name="aggravating_factors"
+                    placeholder="Does anything make your symptoms worse?" required>
+            </div>
+
+            <div class="form-group">
+                <label for="relieving_factors">Does anything make your symptoms better?</label>
+                <input type="text" id="relieving_factors" name="relieving_factors"
+                    placeholder="Does anything make your symptoms better?" required>
+            </div>
+        </div>
+
+        <div class="form-field-container">
+            <div class="form-group">
+                <label for="past_medical_history">Do you have any other medical conditions?</label>
+                <input type="text" id="past_medical_history" name="past_medical_history"
+                    placeholder="Do you have any other medical conditions?" required>
+            </div>
+
+            <div class="form-group">
+                <label for="medications">Are you currently taking any medications?</label>
+                <input type="text" id="medications" name="medications"
+                    placeholder="Are you currently taking any medications?" required>
+            </div>
+
+            <div class="form-group">
+                <label for="family_history">Is there a family history of any medical conditions?</label>
+                <input type="text" id="family_history" name="family_history"
+                    placeholder="Is there a family history of any medical conditions?" required>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="form-group">
+            <label for="other_symptoms">Other Symptoms (if any):</label>
+            <input type="text" id="other_symptoms" name="other_symptoms" placeholder="Enter other symptoms here">
+        </div>
+        <button type="submit" class="submit-btn">Submit Diagnosis</button>
     </form>
 </div>
 {% endblock %}

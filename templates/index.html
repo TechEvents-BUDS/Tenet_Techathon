@@ -6,10 +6,10 @@
     <div class="content-wrapper">
         <h1 class="center-title">Welcome to the Flask App</h1>
         <div class="button-container">
-            <a href="{{ url_for('form_page') }}" class="nav-button">Form Page</a>
-            <a href="{{ url_for('result') }}" class="nav-button">Users List</a>
-            <a href="{{ url_for('about_page') }}" class="nav-button">About</a>
-            <a href="{{ url_for('contact_page') }}" class="nav-button">Contact</a>
+            <a href="{{ url_for('form_page') }}" class="nav-button">Get a Diagnosis</a>
+            <a href="{{ url_for('result') }}" class="nav-button">History</a>
+            <a href="{{ url_for('vs') }}" class="nav-button">Visual Diagnosis</a>
+            <a href="#" class="nav-button">Contact</a>
         </div>
     </div>
 {% endblock %}
@@ -25,14 +25,7 @@
         }
 
         /* Background image */
-        body {
-            background-image: url('Background.png'); /* Replace with your image path */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-            color: white;
-        }
+        
 
         /* Wrapper for centering content */
         .content-wrapper {
