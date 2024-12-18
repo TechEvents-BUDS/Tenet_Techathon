@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block style %}
-
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -23,15 +22,15 @@
         border-radius: 10px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         width: 100%;
-        max-width: 1200px;
-        margin: 20px auto;
+        max-width: 100%;
+        margin: 0 auto;
         box-sizing: border-box;
     }
 
     .result-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
+        grid-template-columns: 30% 70%; /* Left side: 30%, Right side: 70% */
+        gap: 20px;
     }
 
     .section {
@@ -73,19 +72,19 @@
 
     @media (max-width: 768px) {
         .result-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr; /* Single column layout for smaller screens */
         }
     }
 </style>
 {% endblock %}
+
 {% block content %}
 <div class="container">
     <h1>Diagnosis Report</h1>
     <div class="result-grid">
-        <!-- User Data Section -->
+        <!-- Patient Information Section (30%) -->
         <div class="section">
             <h2>Patient Information</h2>
-            <p><strong>Name:</strong> {{ name }}</p>
             <p><strong>Age:</strong> {{ age }}</p>
             <p><strong>Gender:</strong> {{ gender }}</p>
             <p><strong>Symptoms Onset:</strong> {{ onset }}</p>
@@ -97,7 +96,7 @@
             <p><strong>Family History:</strong> {{ family_history }}</p>
         </div>
 
-        <!-- AI Diagnosis Section -->
+        <!-- AI Diagnosis Section (70%) -->
         <div class="section">
             <h2>AI Diagnosis</h2>
             <div class="ai-response">
@@ -106,5 +105,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
