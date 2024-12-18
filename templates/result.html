@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Submitted Diagnoses{% endblock %}
+
+{% block style %}
+    <style>
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Submitted Diagnoses</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Symptoms</th>
+            <th>Medical History</th>
+            <th>Submitted At</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{ user.symptoms }}</td>
+            <td>{{ user.medical_history }}</td>
+            <td>{{ user.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
